@@ -1,0 +1,45 @@
+# Base URL used when generating links to your pages
+# Set to the URL for your site
+baseURL = "https://cjlint.github.io"
+
+# Basic metadata configuration for your blog.
+title = "CJ Linton"
+author = "CJ Linton"
+copyright = "Copyright © 2023, CJ Linton."
+languageCode = "en-US"
+
+# Generate a nice robots.txt for SEO
+enableRobotsTXT = true
+
+[menu]
+[[menu.main]]
+  identifier = 'Resume'
+  name = 'Resume'
+  url = '/cj-linton-resume.pdf'
+  weight = 2
+
+[params]
+  # The "description" of your website. This is used in the meta data of your generated html.
+  description = "The personal website for software developer and musician CJ Linton"
+
+  # The path to your "favicon". This should be a square (at least 32px x 32px) png-file.
+  # Hint: It's good practise to also put a "favicon.ico"-file into your "static"-folder.
+  favicon = "images/favicon.png"
+
+  # These "images" are used for the structured data templates. This will show up, when
+  # services like Twitter or Slack want to generate a preview of a link to your site.
+  # See https://gohugo.io/templates/internal#twitter-cards and
+  # https://gohugo.io/templates/internal#open-graph.
+  images = ["images/share.png"]
+
+  # Another "title" :-). This one is used as the site_name on the Hugo's internal
+  # opengraph structured data template.
+  # See https://ogp.me/ and https://gohugo.io/templates/internal#open-graph.
+  title = "CJ Linton"
+
+  # By default, this theme displays dates with a format like "02 Jan, 2006", but
+  # you can customize it by setting the `dateFormat` param in your site's config
+  # file. See [Hugo's Format function docs](https://gohugo.io/functions/format/)
+  # for details. An example TOML config that uses [ISO
+  # 8601](https://en.wikipedia.org/wiki/ISO_8601) format:
+  # dateFormat = "2006-01-02"
