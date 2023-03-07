@@ -11,6 +11,13 @@ languageCode = "en-US"
 # Generate a nice robots.txt for SEO
 enableRobotsTXT = true
 
+# Generate "Bearblog"-like URLs !only!, see https://bearblog.dev/.
+disableKinds = ["taxonomy"]
+ignoreErrors = ["error-disable-taxonomy"]
+[permalinks]
+  blog = "/:slug/"
+  tags = "/blog/:slug"
+
 [menu]
 [[menu.main]]
   identifier = 'Resume'
@@ -20,7 +27,7 @@ enableRobotsTXT = true
 
 [params]
   # The "description" of your website. This is used in the meta data of your generated html.
-  description = "The personal website for software developer and musician CJ Linton"
+  description = "Personal website for software developer and musician CJ Linton"
 
   # The path to your "favicon". This should be a square (at least 32px x 32px) png-file.
   # Hint: It's good practise to also put a "favicon.ico"-file into your "static"-folder.
@@ -30,7 +37,7 @@ enableRobotsTXT = true
   # services like Twitter or Slack want to generate a preview of a link to your site.
   # See https://gohugo.io/templates/internal#twitter-cards and
   # https://gohugo.io/templates/internal#open-graph.
-  images = ["images/share.png"]
+  # images = ["images/share.png"]
 
   # Another "title" :-). This one is used as the site_name on the Hugo's internal
   # opengraph structured data template.
