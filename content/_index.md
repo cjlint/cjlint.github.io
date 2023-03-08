@@ -1,7 +1,7 @@
 I'm a **software engineer** -- I care about designing and delivering
 **full stack** solutions that make peoples' lives better.
-Currently I'm expanding my **web development** skills beyond plain html/css/js
-by studying CMSes like Wordpress and Hugo.
+I'm knowledgeable in **web development** technologies including html/css/js,
+React, Vue, and CMSes such as Wordpress and Hugo.
 
 I'm passionate about music performance. I play **percussion** or **trombone**
 with my local community bands and orchestras in the Detroit Metro area,
