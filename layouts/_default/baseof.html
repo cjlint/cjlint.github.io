@@ -3,7 +3,8 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    {{- partial "favicon.html" . -}}
+    <link rel="mask-icon" href="/faviconsafari.svg" color="#000">
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" >
     <title>
       {{- block "title" . }}
         {{ with .Title }}{{ . }} | {{ end }}{{ .Site.Title }}
