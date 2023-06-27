@@ -18,13 +18,6 @@ ignoreErrors = ["error-disable-taxonomy"]
   blog = "/:slug/"
   tags = "/blog/:slug"
 
-[menu]
-[[menu.main]]
-  identifier = 'Resume'
-  name = 'Resume'
-  url = '/cj-linton-resume.pdf'
-  weight = 2
-
 [params]
   # The "description" of your website. This is used in the meta data of your generated html.
   description = "Personal website for software developer and musician CJ Linton"

@@ -1,17 +1,15 @@
 I'm a **software engineer** -- I care about designing and delivering
-**full stack** solutions that make peoples' lives better.
-I'm knowledgeable in **web development** technologies including html/css/js,
-React, Vue, and CMSes, as well as **backend frameworks** such as
-Python/Flask, node.js/express, Go, Java, and OpenAPI.
+solutions that make peoples' lives better.
+
+I work with [Project N95](https://projectn95.org) as a full stack developer,
+working on website performance and e-commerce data flows.
+
+I contribute to https://wingspangoals.com, a tool that makes it easier to play
+my favorite board game
 
 I'm passionate about music performance. I play **percussion** or **trombone**
-with local community bands and orchestras,
-including the [Ann Arbor Concert Band](https://www.aaband.org),
-[Detroit Community Ensembles](https://www.dso.org/community-and-learning/wu-family-academy/civic-youth-ensembles/detroit-community-ensembles),
-and more. I also play **drum set**.
-
-I love board games like [Wingspan](https://www.elizhargrave.com/games/wingspan)
+with local community bands and orchestras. I also play **drum set**.
 
 ### Contact me
 
-I'm available for employment, gigs, and connections
+I'm available for employment and other connections
