@@ -1,6 +1,6 @@
 # Base URL used when generating links to your pages
 # Set to the URL for your site
-baseURL = "https://cjlint.github.io"
+baseURL = "https://cjlint.com"
 
 # Basic metadata configuration for your blog.
 title = "CJ Linton"
@@ -20,7 +20,7 @@ ignoreErrors = ["error-disable-taxonomy"]
 
 [params]
   # The "description" of your website. This is used in the meta data of your generated html.
-  description = "Personal website for software developer and musician CJ Linton"
+  description = "Personal website for software developer CJ Linton"
 
   # These "images" are used for the structured data templates. This will show up, when
   # services like Twitter or Slack want to generate a preview of a link to your site.
