@@ -7,7 +7,7 @@ tags = ["vim"]
 
 With LSP capabilities in vim, you can use the `gd` command to jump to the definition of something under your cursor. The definition file is opened in the same window, but you might have been trying to look at your original code file and the definition file side by side.
 
-There's no built-in way to tell `gd` to open the new tab or split window without writing more vimscript or lua in your configuration files. But with a little vim-fu you can do it all with no new code, and have the flexibility of choosing a new tab vs. a new split window.
+There's no built-in way to tell `gd` to open the new tab or split window without writing more vimscript or lua in your configuration files. But you _can_ combine vim commands do it all with no new code, and have the flexibility of choosing a new tab vs. a new split window.
 
 ## Jumping back with `<Ctrl-O>`
 
