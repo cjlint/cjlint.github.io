@@ -3,11 +3,11 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="mask-icon" href="/faviconsafari.svg" color="#000">
-    <link rel="icon" href="/favicon.svg" type="image/svg+xml" >
+    <link rel="mask-icon" href="/faviconsafari.svg" color="#000" />
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
     <title>
       {{- block "title" . }}
-        {{ with .Title }}{{ . }} | {{ end }}{{ .Site.Title }}
+        {{ with .Title }}{{ . }} |{{ end }}{{ .Site.Title }}
       {{- end }}
 
     </title>
@@ -22,6 +22,20 @@
     {{- partial "style.html" . -}}
 
   </head>
+  <!-- Google tag (gtag.js) -->
+  <script
+    async
+    src="https://www.googletagmanager.com/gtag/js?id=G-68QK6M81JF"
+  ></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() {
+      dataLayer.push(arguments);
+    }
+    gtag("js", new Date());
+
+    gtag("config", "G-68QK6M81JF");
+  </script>
 
   <body>
     <header>
