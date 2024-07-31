@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="color-scheme" content="light dark" />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/@picocss/pico@2/css/pico.classless.amber.min.css"
+    />
+    <title>Birds Scoresheet</title>
+    <style>
+      .emoji::before {
+        content: attr(data-before);
+      }
+      .score {
+        text-align: center;
+      }
+    </style>
+    <script type="importmap">
+      {
+        "imports": {
+          "vue": "https://unpkg.com/vue@3/dist/vue.esm-browser.prod.js"
+        }
+      }
+    </script>
+  </head>
+  <script type="module">
+    import { createApp, ref, computed } from "vue";
+
+    const scores = ref({
+      birds: 0,
+      bonus: 0,
+      goals: 0,
+      eggs: 0,
+      food: 0,
+      tucked: 0,
+      nectar: 0,
+      duet: 0,
+    });
+
+    const app = createApp({
+      setup() {
+        return {
+          scores,
+          score: computed({
+            get() {
+              return Object.values(scores.value)
+                .filter((a) => a)
+                .reduce((a, b) => a + b, 0);
+            },
+          }),
+        };
+      },
+    });
+    // Delimiters changed to evade collision with Hugo
+    app.config.compilerOptions.delimiters = ["${", "}"];
+    app.mount("#app");
+  </script>
+  <body id="app">
+    <main class="container">
+      <form>
+        <fieldset>
+          <label class="emoji" data-before="🕊️ "
+            >Birds
+            <input v-model="scores.birds" type="number" name="birds" />
+          </label>
+          <label class="emoji" data-before="🍀 "
+            >Bonus Cards
+            <input v-model="scores.bonus" type="number" name="bonus" />
+          </label>
+          <label class="emoji" data-before="🧊 "
+            >End of Round Goals
+            <input v-model="scores.goals" type="number" name="goals" />
+          </label>
+          <label class="emoji" data-before="🥚 "
+            >Eggs <input v-model="scores.eggs" type="number" name="eggs" />
+          </label>
+          <label class="emoji" data-before="🐛 "
+            >Food <input v-model="scores.food" type="number" name="food" />
+          </label>
+          <label class="emoji" data-before="🂠 "
+            >Tucked
+            <input v-model="scores.tucked" type="number" name="tucked" />
+          </label>
+          <label class="emoji" data-before="🌺 "
+            >Nectar
+            <input v-model="scores.nectar" type="number" name="nectar" />
+          </label>
+          <label class="emoji" data-before="☯️ "
+            >Duet <input v-model="scores.duet" type="number" name="duet" />
+          </label>
+        </fieldset>
+      </form>
+      <article class="score">Score: ${ score }</article>
+    </main>
+  </body>
+</html>
