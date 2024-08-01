@@ -23,7 +23,7 @@
         font-size: 0;
         border: 0;
       }
-      .score {
+      .text-align-c {
         text-align: center;
       }
     </style>
@@ -52,26 +52,39 @@
   <script type="module">
     import { createApp, ref, computed } from "vue";
 
-    const scores = ref({
-      birds: 0,
-      bonus: 0,
-      goals: 0,
-      eggs: 0,
-      food: 0,
-      tucked: 0,
-      nectar: 0,
-      duet: 0,
+    const scores = ref({});
+    function reset() {
+      scores.value.birds = 0;
+      scores.value.bonus = 0;
+      scores.value.goals = 0;
+      scores.value.eggs = 0;
+      scores.value.food = 0;
+      scores.value.tucked = 0;
+      scores.value.nectar = 0;
+      scores.value.duet = 0;
+    }
+    reset();
+
+    const score = computed({
+      get() {
+        return Object.values(scores.value)
+          .filter((a) => a)
+          .reduce((a, b) => a + b, 0);
+      },
     });
 
     const app = createApp({
       setup() {
         return {
           scores,
-          score: computed({
+          score,
+          reset,
+          wowFactor: computed({
             get() {
-              return Object.values(scores.value)
-                .filter((a) => a)
-                .reduce((a, b) => a + b, 0);
+              return Math.max(
+                Math.min(Math.floor((score.value - 80) / 20), 5),
+                0
+              );
             },
           }),
         };
@@ -95,7 +108,12 @@
           {{- partial "wingspan_score.html" (dict "Label" "Duet" "Name" "duet" "Emoji" "☯️") -}}
         </fieldset>
       </form>
-      <article class="score">Score: ${ score }</article>
+      <article class="text-align-c">
+        Score: ${ score } ${ "🤯".repeat(wowFactor) }
+      </article>
+      <div class="grid text-align-c">
+        <button @click="reset" class="primary">Reset</button>
+      </div>
     </main>
   </body>
 </html>
