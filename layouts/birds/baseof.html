@@ -9,6 +9,8 @@
       href="https://cdn.jsdelivr.net/npm/@picocss/pico@2/css/pico.classless.amber.min.css"
     />
     <title>Birds Scoresheet</title>
+    {{- partial "seo_tags.html" . -}}
+    <meta name="referrer" content="no-referrer-when-downgrade" />
     <style>
       .emoji::before {
         content: attr(data-before);
@@ -23,6 +25,20 @@
           "vue": "https://unpkg.com/vue@3/dist/vue.esm-browser.prod.js"
         }
       }
+    </script>
+    <!-- Google tag (gtag.js) -->
+    <script
+      async
+      src="https://www.googletagmanager.com/gtag/js?id=G-68QK6M81JF"
+    ></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag() {
+        dataLayer.push(arguments);
+      }
+      gtag("js", new Date());
+
+      gtag("config", "G-68QK6M81JF");
     </script>
   </head>
   <script type="module">
