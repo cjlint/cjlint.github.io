@@ -1,11 +1,6 @@
 <div class="grid with-buttons">
-  <button
-    @click.prevent="scores.{{ .Name }}--"
-    class="emoji emoji-button outline"
-    data-before="📉"
-  >
-    Decrement
-    {{ .Name }}
+  <button @click.prevent="scores.{{ .Name }}--" class="symbol-button outline">
+    <span class="material-symbols-outlined"> remove </span>
   </button>
   <label class="emoji" data-before="{{ .Emoji }} "
     >{{ .Label }}
@@ -17,12 +12,7 @@
       name="{{ .Name }}"
     />
   </label>
-  <button
-    @click.prevent="scores.{{ .Name }}++"
-    class="emoji emoji-button outline"
-    data-before="📈"
-  >
-    Increment
-    {{ .Name }}
+  <button @click.prevent="scores.{{ .Name }}++" class="symbol-button outline">
+    <span class="material-symbols-outlined"> add </span>
   </button>
 </div>
