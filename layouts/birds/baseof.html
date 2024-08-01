@@ -79,32 +79,83 @@
         <fieldset>
           <label class="emoji" data-before="🕊️ "
             >Birds
-            <input v-model="scores.birds" type="number" name="birds" />
+            <input
+              v-model="scores.birds"
+              type="number"
+              pattern="[0-9]*"
+              inputmode="numeric"
+              name="birds"
+            />
           </label>
           <label class="emoji" data-before="🍀 "
             >Bonus Cards
-            <input v-model="scores.bonus" type="number" name="bonus" />
+            <input
+              v-model="scores.bonus"
+              type="number"
+              pattern="[0-9]*"
+              inputmode="numeric"
+              name="bonus"
+            />
           </label>
           <label class="emoji" data-before="🧊 "
             >End of Round Goals
-            <input v-model="scores.goals" type="number" name="goals" />
+            <input
+              v-model="scores.goals"
+              type="number"
+              pattern="[0-9]*"
+              inputmode="numeric"
+              name="goals"
+            />
           </label>
           <label class="emoji" data-before="🥚 "
-            >Eggs <input v-model="scores.eggs" type="number" name="eggs" />
+            >Eggs
+            <input
+              v-model="scores.eggs"
+              type="number"
+              pattern="[0-9]*"
+              inputmode="numeric"
+              name="eggs"
+            />
           </label>
           <label class="emoji" data-before="🐛 "
-            >Food <input v-model="scores.food" type="number" name="food" />
+            >Food
+            <input
+              v-model="scores.food"
+              type="number"
+              pattern="[0-9]*"
+              inputmode="numeric"
+              name="food"
+            />
           </label>
           <label class="emoji" data-before="🂠 "
             >Tucked
-            <input v-model="scores.tucked" type="number" name="tucked" />
+            <input
+              v-model="scores.tucked"
+              type="number"
+              pattern="[0-9]*"
+              inputmode="numeric"
+              name="tucked"
+            />
           </label>
           <label class="emoji" data-before="🌺 "
             >Nectar
-            <input v-model="scores.nectar" type="number" name="nectar" />
+            <input
+              v-model="scores.nectar"
+              type="number"
+              pattern="[0-9]*"
+              inputmode="numeric"
+              name="nectar"
+            />
           </label>
           <label class="emoji" data-before="☯️ "
-            >Duet <input v-model="scores.duet" type="number" name="duet" />
+            >Duet
+            <input
+              v-model="scores.duet"
+              type="number"
+              pattern="[0-9]*"
+              inputmode="numeric"
+              name="duet"
+            />
           </label>
         </fieldset>
       </form>
