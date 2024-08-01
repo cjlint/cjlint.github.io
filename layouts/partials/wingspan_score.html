@@ -1,0 +1,28 @@
+<div class="grid with-buttons">
+  <button
+    @click.prevent="scores.{{ .Name }}--"
+    class="emoji emoji-button outline"
+    data-before="👇"
+  >
+    Decrement
+    {{ .Name }}
+  </button>
+  <label class="emoji" data-before="{{ .Emoji }} "
+    >{{ .Label }}
+    <input
+      v-model="scores.{{ .Name }}"
+      type="number"
+      pattern="[0-9]*"
+      inputmode="numeric"
+      name="{{ .Name }}"
+    />
+  </label>
+  <button
+    @click.prevent="scores.{{ .Name }}++"
+    class="emoji emoji-button outline"
+    data-before="☝️"
+  >
+    Increment
+    {{ .Name }}
+  </button>
+</div>

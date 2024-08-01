@@ -6,14 +6,22 @@
     <meta name="color-scheme" content="light dark" />
     <link
       rel="stylesheet"
-      href="https://cdn.jsdelivr.net/npm/@picocss/pico@2/css/pico.classless.amber.min.css"
+      href="https://cdn.jsdelivr.net/npm/@picocss/pico@2/css/pico.amber.min.css"
     />
     <title>Birds Scoresheet</title>
     {{- partial "seo_tags.html" . -}}
     <meta name="referrer" content="no-referrer-when-downgrade" />
     <style>
       .emoji::before {
+        font-size: 1rem;
         content: attr(data-before);
+      }
+      .with-buttons {
+        grid-template-columns: 15% 1fr 15%;
+      }
+      .emoji-button {
+        font-size: 0;
+        border: 0;
       }
       .score {
         text-align: center;
@@ -77,86 +85,14 @@
     <main class="container">
       <form>
         <fieldset>
-          <label class="emoji" data-before="🕊️ "
-            >Birds
-            <input
-              v-model="scores.birds"
-              type="number"
-              pattern="[0-9]*"
-              inputmode="numeric"
-              name="birds"
-            />
-          </label>
-          <label class="emoji" data-before="🍀 "
-            >Bonus Cards
-            <input
-              v-model="scores.bonus"
-              type="number"
-              pattern="[0-9]*"
-              inputmode="numeric"
-              name="bonus"
-            />
-          </label>
-          <label class="emoji" data-before="🧊 "
-            >End of Round Goals
-            <input
-              v-model="scores.goals"
-              type="number"
-              pattern="[0-9]*"
-              inputmode="numeric"
-              name="goals"
-            />
-          </label>
-          <label class="emoji" data-before="🥚 "
-            >Eggs
-            <input
-              v-model="scores.eggs"
-              type="number"
-              pattern="[0-9]*"
-              inputmode="numeric"
-              name="eggs"
-            />
-          </label>
-          <label class="emoji" data-before="🐛 "
-            >Food
-            <input
-              v-model="scores.food"
-              type="number"
-              pattern="[0-9]*"
-              inputmode="numeric"
-              name="food"
-            />
-          </label>
-          <label class="emoji" data-before="🂠 "
-            >Tucked
-            <input
-              v-model="scores.tucked"
-              type="number"
-              pattern="[0-9]*"
-              inputmode="numeric"
-              name="tucked"
-            />
-          </label>
-          <label class="emoji" data-before="🌺 "
-            >Nectar
-            <input
-              v-model="scores.nectar"
-              type="number"
-              pattern="[0-9]*"
-              inputmode="numeric"
-              name="nectar"
-            />
-          </label>
-          <label class="emoji" data-before="☯️ "
-            >Duet
-            <input
-              v-model="scores.duet"
-              type="number"
-              pattern="[0-9]*"
-              inputmode="numeric"
-              name="duet"
-            />
-          </label>
+          {{- partial "wingspan_score.html" (dict "Label" "Birds" "Name" "birds" "Emoji" "🕊️") -}}
+          {{- partial "wingspan_score.html" (dict "Label" "Bonus Cards" "Name" "bonus" "Emoji" "🍀") -}}
+          {{- partial "wingspan_score.html" (dict "Label" "End of Round Goals" "Name" "goals" "Emoji" "🧊") -}}
+          {{- partial "wingspan_score.html" (dict "Label" "Eggs" "Name" "eggs" "Emoji" "🥚") -}}
+          {{- partial "wingspan_score.html" (dict "Label" "Food" "Name" "food" "Emoji" "🐛") -}}
+          {{- partial "wingspan_score.html" (dict "Label" "Tucked" "Name" "tucked" "Emoji" "🂠") -}}
+          {{- partial "wingspan_score.html" (dict "Label" "Nectar" "Name" "nectar" "Emoji" "🌺") -}}
+          {{- partial "wingspan_score.html" (dict "Label" "Duet" "Name" "duet" "Emoji" "☯️") -}}
         </fieldset>
       </form>
       <article class="score">Score: ${ score }</article>
