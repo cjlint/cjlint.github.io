@@ -30,6 +30,10 @@
       .text-align-c {
         text-align: center;
       }
+      .double-sided-switch {
+        margin-left: 0.5rem;
+        margin-right: 0.5rem;
+      }
     </style>
     <script type="importmap">
       {
@@ -56,6 +60,8 @@
   <script type="module">
     import { createApp, ref, computed } from "vue";
 
+    const connectedMode = ref(false);
+
     const scores = ref({});
     function reset() {
       scores.value.birds = 0;
@@ -80,6 +86,7 @@
     const app = createApp({
       setup() {
         return {
+          connectedMode,
           scores,
           score,
           reset,
@@ -99,16 +106,50 @@
     app.mount("#app");
   </script>
   <body id="app">
+    <article>
+      <label>
+        Manual
+        <input
+          v-model="connectedMode"
+          name="connectedMode"
+          type="checkbox"
+          role="switch"
+          class="double-sided-switch"
+        />
+        Connected
+      </label>
+    </article>
     <main class="container">
       <form>
         <fieldset>
           {{- partial "wingspan_score.html" (dict "Label" "Birds" "Name" "birds" "Emoji" "🕊️") -}}
           {{- partial "wingspan_score.html" (dict "Label" "Bonus Cards" "Name" "bonus" "Emoji" "🍀") -}}
-          {{- partial "wingspan_score.html" (dict "Label" "End of Round Goals" "Name" "goals" "Emoji" "🧊") -}}
+          <template v-if="connectedMode">
+            <div class="grid with-buttons">
+              <div></div>
+              <label class="emoji" data-before="🧊 "
+                >End of Round Goals
+                <input
+                  v-model="scores.goals"
+                  type="number"
+                  pattern="[0-9]*"
+                  inputmode="numeric"
+                  name="goals"
+                />
+              </label>
+              <div></div>
+            </div>
+          </template>
+          <template v-else>
+            {{- partial "wingspan_score.html" (dict "Label" "End of Round Goals" "Name" "goals" "Emoji" "🧊") -}}
+          </template>
           {{- partial "wingspan_score.html" (dict "Label" "Eggs" "Name" "eggs" "Emoji" "🥚") -}}
           {{- partial "wingspan_score.html" (dict "Label" "Cached Food" "Name" "food" "Emoji" "🐛") -}}
           {{- partial "wingspan_score.html" (dict "Label" "Tucked" "Name" "tucked" "Emoji" "🂠") -}}
-          {{- partial "wingspan_score.html" (dict "Label" "Nectar" "Name" "nectar" "Emoji" "🌺") -}}
+          <template v-if="connectedMode"> Coming soon! </template>
+          <template v-else>
+            {{- partial "wingspan_score.html" (dict "Label" "Nectar" "Name" "nectar" "Emoji" "🌺") -}}
+          </template>
           {{- partial "wingspan_score.html" (dict "Label" "Duet" "Name" "duet" "Emoji" "☯️") -}}
         </fieldset>
       </form>
