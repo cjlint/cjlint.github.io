@@ -16,6 +16,15 @@
     {{- partial "seo_tags.html" . -}}
     <meta name="referrer" content="no-referrer-when-downgrade" />
     <style>
+      .connection-settings {
+        grid-template-columns: 1fr 1fr;
+      }
+      .room-code {
+        text-transform: uppercase;
+      }
+      .connection-toggle {
+        align-content: center;
+      }
       .helper-text {
         font-style: italic;
         margin-bottom: 0.5rem;
@@ -34,10 +43,6 @@
       }
       .text-align-c {
         text-align: center;
-      }
-      .double-sided-switch {
-        margin-left: 0.5rem;
-        margin-right: 0.5rem;
       }
     </style>
     <script type="importmap">
@@ -118,17 +123,30 @@
   </script>
   <body id="app">
     <article>
-      <label>
-        Manual
-        <input
-          v-model="connectedMode"
-          name="connectedMode"
-          type="checkbox"
-          role="switch"
-          class="double-sided-switch"
-        />
-        Connected
-      </label>
+      <details>
+        <summary>Room Connection</summary>
+        <section class="grid connection-settings">
+          <label>
+            Room Code
+            <input
+              class="room-code"
+              v-model="roomCode"
+              name="roomCode"
+              maxlength="4"
+              autocomplete="off"
+            />
+          </label>
+          <label class="connection-toggle">
+            <input
+              v-model="connectedMode"
+              name="connectedMode"
+              type="checkbox"
+              role="switch"
+            />
+            Connected
+          </label>
+        </section>
+      </details>
     </article>
 
     <main class="container">
