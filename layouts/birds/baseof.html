@@ -156,18 +156,10 @@
                     them
                   </small>
                 </article>
-                <label
-                  >Round 1
-                  <select
-                    v-model="connectedScores.round1Goal"
-                    name="round1Goal"
-                  >
-                    <option selected :value="-1">No Score</option>
-                    <option :value="0">🥇First</option>
-                    <option :value="1">🥈Second</option>
-                    <option :value="2">🥉Third</option>
-                  </select>
-                </label>
+                {{- partial "round_goal_select.html" (dict "Label" "Round 1" "Name" "round1Goal") -}}
+                {{- partial "round_goal_select.html" (dict "Label" "Round 2" "Name" "round2Goal") -}}
+                {{- partial "round_goal_select.html" (dict "Label" "Round 3" "Name" "round3Goal") -}}
+                {{- partial "round_goal_select.html" (dict "Label" "Round 4" "Name" "round4Goal") -}}
               </fieldset>
               <div></div>
             </div>

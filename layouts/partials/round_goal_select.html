@@ -1,0 +1,9 @@
+<label
+  >{{ .Label }}
+  <select v-model="connectedScores.{{ .Name }}" name="{{ .Name }}">
+    <option selected :value="-1">No Score</option>
+    <option :value="0">🥇First</option>
+    <option :value="1">🥈Second</option>
+    <option :value="2">🥉Third</option>
+  </select>
+</label>
