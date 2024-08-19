@@ -16,6 +16,11 @@
     {{- partial "seo_tags.html" . -}}
     <meta name="referrer" content="no-referrer-when-downgrade" />
     <style>
+      .helper-text {
+        font-style: italic;
+        margin-bottom: 0.5rem;
+        grid-template-columns: 10% 1fr;
+      }
       .emoji::before {
         font-size: 1rem;
         content: attr(data-before);
@@ -63,6 +68,7 @@
     const connectedMode = ref(false);
 
     const scores = ref({});
+    const connectedScores = ref({});
     function reset() {
       scores.value.birds = 0;
       scores.value.bonus = 0;
@@ -72,6 +78,10 @@
       scores.value.tucked = 0;
       scores.value.nectar = 0;
       scores.value.duet = 0;
+      connectedScores.value.round1Goal = -1;
+      connectedScores.value.round2Goal = -1;
+      connectedScores.value.round3Goal = -1;
+      connectedScores.value.round4Goal = -1;
     }
     reset();
 
@@ -88,6 +98,7 @@
         return {
           connectedMode,
           scores,
+          connectedScores,
           score,
           reset,
           wowFactor: computed({
@@ -119,24 +130,45 @@
         Connected
       </label>
     </article>
+
     <main class="container">
       <form>
         <fieldset>
           {{- partial "wingspan_score.html" (dict "Label" "Birds" "Name" "birds" "Emoji" "🕊️") -}}
           {{- partial "wingspan_score.html" (dict "Label" "Bonus Cards" "Name" "bonus" "Emoji" "🍀") -}}
+
+
           <template v-if="connectedMode">
             <div class="grid with-buttons">
               <div></div>
-              <label class="emoji" data-before="🧊 "
-                >End of Round Goals
-                <input
-                  v-model="scores.goals"
-                  type="number"
-                  pattern="[0-9]*"
-                  inputmode="numeric"
-                  name="goals"
-                />
-              </label>
+              <fieldset>
+                <legend
+                  class="emoji"
+                  data-before="🧊 "
+                  aria-describedby="end-of-round-helper-text"
+                >
+                  End of Round Goals
+                </legend>
+                <article class="grid helper-text">
+                  <span class="material-symbols-outlined"> help </span>
+                  <small id="end-of-round-helper-text">
+                    If you tied with other players, select the same placement as
+                    them
+                  </small>
+                </article>
+                <label
+                  >Round 1
+                  <select
+                    v-model="connectedScores.round1Goal"
+                    name="round1Goal"
+                  >
+                    <option selected :value="-1">No Score</option>
+                    <option :value="0">🥇First</option>
+                    <option :value="1">🥈Second</option>
+                    <option :value="2">🥉Third</option>
+                  </select>
+                </label>
+              </fieldset>
               <div></div>
             </div>
           </template>
@@ -146,10 +178,7 @@
           {{- partial "wingspan_score.html" (dict "Label" "Eggs" "Name" "eggs" "Emoji" "🥚") -}}
           {{- partial "wingspan_score.html" (dict "Label" "Cached Food" "Name" "food" "Emoji" "🐛") -}}
           {{- partial "wingspan_score.html" (dict "Label" "Tucked" "Name" "tucked" "Emoji" "🂠") -}}
-          <template v-if="connectedMode"> Coming soon! </template>
-          <template v-else>
-            {{- partial "wingspan_score.html" (dict "Label" "Nectar" "Name" "nectar" "Emoji" "🌺") -}}
-          </template>
+          {{- partial "wingspan_score.html" (dict "Label" "Nectar" "Name" "nectar" "Emoji" "🌺") -}}
           {{- partial "wingspan_score.html" (dict "Label" "Duet" "Name" "duet" "Emoji" "☯️") -}}
         </fieldset>
       </form>
