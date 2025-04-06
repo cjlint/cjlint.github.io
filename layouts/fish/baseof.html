@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="color-scheme" content="light dark" />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/@picocss/pico@2/css/pico.amber.min.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200"
+    />
+    <title>Fish Scoresheet</title>
+    {{- partial "seo_tags.html" . -}}
+    <meta name="referrer" content="no-referrer-when-downgrade" />
+    <style>
+      .helper-text {
+        font-style: italic;
+        margin-bottom: 0.5rem;
+        grid-template-columns: 10% 1fr;
+      }
+      .emoji::before {
+        font-size: 1rem;
+        content: attr(data-before);
+      }
+      .input::before {
+        font-size: 1rem;
+        content: attr(data-before);
+      }
+      .with-buttons {
+        grid-template-columns: 12% 1fr 12%;
+      }
+      .symbol-button {
+        padding: 0;
+        border: 0;
+      }
+      .text-align-c {
+        text-align: center;
+      }
+    </style>
+    <script type="importmap">
+      {
+        "imports": {
+          "vue": "https://unpkg.com/vue@3/dist/vue.esm-browser.prod.js"
+        }
+      }
+    </script>
+    <!-- Google tag (gtag.js) -->
+    <script
+      async
+      src="https://www.googletagmanager.com/gtag/js?id=G-68QK6M81JF"
+    ></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag() {
+        dataLayer.push(arguments);
+      }
+      gtag("js", new Date());
+
+      gtag("config", "G-68QK6M81JF");
+    </script>
+  </head>
+  <script type="module">
+    import { createApp, ref, computed } from "vue";
+
+    const scores = ref({});
+    function reset() {
+      scores.value.week1 = 0;
+      scores.value.week2 = 0;
+      scores.value.week3 = 0;
+      scores.value.gameEnd = 0;
+      scores.value.fish = 0;
+      scores.value.eggs = 0;
+      scores.value.young = 0;
+      scores.value.schools = 0;
+      scores.value.consumed = 0;
+    }
+    reset();
+
+    const score = computed({
+      get() {
+        const schoolsPoints = scores.value.schools * 5; // hacky way to make schools count for x6
+        return (
+          schoolsPoints +
+          Object.values(scores.value)
+            .filter((a) => a)
+            .reduce((a, b) => a + b, 0)
+        );
+      },
+    });
+
+    const app = createApp({
+      setup() {
+        return {
+          scores,
+          score,
+          reset,
+          wowFactor: computed({
+            get() {
+              return Math.max(
+                Math.min(Math.floor((score.value - 80) / 20), 5),
+                0
+              );
+            },
+          }),
+        };
+      },
+    });
+    // Delimiters changed to evade collision with Hugo
+    app.config.compilerOptions.delimiters = ["${", "}"];
+    app.mount("#app");
+  </script>
+  <body id="app">
+    <main class="container">
+      <form>
+        <fieldset>
+          {{- partial "wingspan_score.html" (dict "Label" "Fish" "Name" "fish" "Emoji" "🐟") -}}
+          {{- partial "wingspan_score.html" (dict "Label" "Week 1 Achievement" "Name" "week1" "Emoji" "📆") -}}
+          {{- partial "wingspan_score.html" (dict "Label" "Week 2 Achievement" "Name" "week2" "Emoji" "📆") -}}
+          {{- partial "wingspan_score.html" (dict "Label" "Week 3 Achievement" "Name" "week3" "Emoji" "📆") -}}
+          {{- partial "wingspan_score.html" (dict "Label" "Game End Points" "Name" "gameEnd" "Emoji" "🟨") -}}
+          {{- partial "wingspan_score.html" (dict "Label" "Eggs" "Name" "eggs" "Emoji" "🥚") -}}
+          {{- partial "wingspan_score.html" (dict "Label" "Young" "Name" "young" "Emoji" "🐣") -}}
+          {{- partial "wingspan_score.html" (dict "Label" "Schools (# multiplied by 6)" "Name" "schools" "Emoji" "🏫") -}}
+          {{- partial "wingspan_score.html" (dict "Label" "Consumed Fish" "Name" "consumed" "Emoji" "🍣") -}}
+        </fieldset>
+      </form>
+      <article class="text-align-c">
+        Score: ${ score } ${ "🤯".repeat(wowFactor) }
+      </article>
+      <div class="grid text-align-c">
+        <button @click="reset" class="secondary">Reset</button>
+      </div>
+    </main>
+  </body>
+</html>

@@ -122,7 +122,7 @@
     app.mount("#app");
   </script>
   <body id="app">
-    <article>
+    <article v-if="connectedMode">
       <details>
         <summary>Room Connection</summary>
         <section class="grid connection-settings">
@@ -196,7 +196,7 @@
         Score: ${ score } ${ "🤯".repeat(wowFactor) }
       </article>
       <div class="grid text-align-c">
-        <button @click="reset" class="primary">Reset</button>
+        <button @click="reset" class="secondary">Reset</button>
       </div>
     </main>
   </body>
